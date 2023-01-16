@@ -3,5 +3,7 @@
 
 # Пример
 
-# CONSTANT_NAME = "value"
-# LOG_DIR = "logs"
+PWD_HASH_SALT = b'secret here'
+PWD_HASH_ITERATIONS = 100_000  # 100
+SECRET = 's3cR$eT'
+ALGO = 'HS256'
