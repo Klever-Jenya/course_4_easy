@@ -31,7 +31,7 @@ class RegisterViews(Resource):
 
 @auth_ns.route('/login')  # post- передаем email и пароль и,
 # если пользователь прошел аутентификацию, возвращаем пользователю ответ в виде:
-class AuthView(Resource):
+class LoginView(Resource):
 
     def post(self):
         req_json = request.json
