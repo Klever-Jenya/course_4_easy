@@ -1,11 +1,8 @@
 # основной файл приложения. здесь конфигурируется
 # фласк, сервисы, SQLAlchemy и все остальное что требуется для приложения.
 # этот файл часто является точкой входа в приложение
-import hashlib
-
-# Пример
-
 from flask import Flask
+
 from flask_restx import Api
 
 from config import Config
@@ -43,4 +40,4 @@ with app.app_context():
     db.create_all()
 
 if __name__ == '__main__':
-    app.run(port=10001, debug=True)
+    app.run(port=10002, debug=True)

@@ -25,4 +25,3 @@ class UserSchema(Schema):
     surname = fields.Str()
     favorite_genre = fields.Int()
 
-
