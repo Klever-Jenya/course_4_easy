@@ -1,6 +1,6 @@
 from marshmallow import Schema, fields
 
-from setup_db import db
+from setup import db
 
 
 class Movie(db.Model):

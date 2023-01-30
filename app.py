@@ -6,7 +6,7 @@ from flask import Flask
 from flask_restx import Api
 
 from config import Config
-from setup_db import db
+from setup import db
 from views.auths import auth_ns
 from views.directors import director_ns
 from views.genres import genre_ns
@@ -40,4 +40,4 @@ with app.app_context():
     db.create_all()
 
 if __name__ == '__main__':
-    app.run(port=10002, debug=True)
+    app.run(port=10001 , debug=True)

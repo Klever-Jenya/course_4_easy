@@ -4,7 +4,7 @@ from flask_restx import Resource, Namespace
 from dao.models.movie import Movie, MovieSchema
 from implemented import movie_service
 from requireds import auth_required
-from setup_db import db
+from setup import db
 
 movie_ns = Namespace('movies')
 
@@ -15,12 +15,12 @@ movie_ns = Namespace('movies')
 # Для того чтобы все ссылки корректно работали, их нужно обернуть в декоратор,
 # в котором мы будем проверять переданный токен.
 
-@movie_ns.route('/')
+@movie_ns.route('/')  # (работает без фильтров)
 class MoviesView(Resource):
-    @auth_required
+    # @auth_required
     def get(self):
-        status = request.args.get("status")  # новинки new.
-        page = request.args.get("page")  # точно число
+        status = request.args.get("status")  # (работает) новинки new.
+        page = request.args.get("page")  # (не работает) точно число
 
         filters = {
             "status": status,
@@ -32,7 +32,7 @@ class MoviesView(Resource):
         return res, 200
 
 
-@movie_ns.route('/<int:bid>')
+@movie_ns.route('/<int:bid>')  # (работает)
 class MovieView(Resource):
     @auth_required
     def get(self, bid):

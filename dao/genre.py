@@ -6,12 +6,12 @@ class GenreDAO:
     def __init__(self, session):
         self.session = session
 
-    def get_one(self, bid):
+    def get_one(self, bid):  # (работает)
         return self.session.query(Genre).get(bid)
 
         # пагинировать-разбить на страницы
 
-    def get_all(self, filters):
+    def get_all(self, filters):  # (не работает)
         page = filters.get("page")
 
         if page is not None:  # пагинацию нельзя в сервисах

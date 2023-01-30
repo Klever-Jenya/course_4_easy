@@ -3,7 +3,7 @@ from flask_restx import Resource, Namespace
 
 import services.user
 from dao.models.user import UserSchema, User
-from setup_db import db
+from setup import db
 
 user_ns = Namespace('user')
 
@@ -11,7 +11,7 @@ user_ns = Namespace('user')
 @user_ns.route('/')
 class UsersView(Resource):
     # - **GET** /user/ — получить информацию о пользователе (его профиль)
-    def get(self, uid: int):
+    def get(self, uid: int):  # 404 not found
         try:
             user_by_id = db.session.query(User).get(uid)
             user = UserSchema().dump(user_by_id)

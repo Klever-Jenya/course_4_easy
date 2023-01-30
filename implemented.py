@@ -6,7 +6,7 @@ from services.director import DirectorService
 from services.genre import GenreService
 from services.movie import MovieService
 from services.user import UserService
-from setup_db import db
+from setup import db
 
 # implemented.py => "реализовываем"
 director_dao = DirectorDAO(session=db.session)

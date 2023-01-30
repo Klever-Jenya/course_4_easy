@@ -3,7 +3,7 @@ import hashlib
 from marshmallow import Schema, fields
 
 from constants import PWD_HASH_SALT, PWD_HASH_ITERATIONS
-from setup_db import db
+from setup import db
 
 
 class User(db.Model):

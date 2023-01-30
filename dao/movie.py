@@ -9,7 +9,6 @@ class MovieDAO:
     def get_one(self, bid):
         return self.session.query(Movie).get(bid)
 
-    # пагинировать-разбить на страницы
     def get_all(self, filters):
         status = filters.get("status")
         page = filters.get("page")

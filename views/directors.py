@@ -4,23 +4,23 @@ from flask_restx import Resource, Namespace
 from dao.models.director import Director, DirectorSchema
 from requireds import auth_required
 
-from setup_db import db
+from setup import db
 
 director_ns = Namespace('directors')
 
 
-@director_ns.route('/')
+@director_ns.route('/')  # (не работает)
 class DirectorsView(Resource):
-    @auth_required
+    # @auth_required
     def get(self, filters):
         rs = db.session.query(Director).all(filters)
         res = DirectorSchema(many=True).dump(rs)
         return res, 200
 
 
-@director_ns.route('/<int:rid>')
+@director_ns.route('/<int:rid>')  # (работает)
 class DirectorView(Resource):
-    @auth_required
+    # @auth_required
     def get(self, rid):
         r = db.session.query(Director).get(rid)
         sm_d = DirectorSchema().dump(r)
