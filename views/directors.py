@@ -9,11 +9,11 @@ from setup import db
 director_ns = Namespace('directors')
 
 
-@director_ns.route('/')  # (не работает)
+@director_ns.route('/')  # работает
 class DirectorsView(Resource):
     # @auth_required
-    def get(self, filters):
-        rs = db.session.query(Director).all(filters)
+    def get(self):
+        rs = db.session.query(Director).all()
         res = DirectorSchema(many=True).dump(rs)
         return res, 200
 

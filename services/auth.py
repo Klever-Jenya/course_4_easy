@@ -2,7 +2,6 @@ import calendar
 import datetime
 
 import jwt
-from flask import abort
 
 from constants import SECRET, ALGO
 from services.user import UserService
@@ -16,7 +15,7 @@ class AuthService:
         user = self.user_service.get_user_by_email(email)
 
         if user is None:
-            raise abort(404)
+            raise Exception()
 
         if not is_refresh:
             if not self.user_service.compare_passwords(user.password, password):

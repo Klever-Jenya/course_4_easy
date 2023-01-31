@@ -28,7 +28,7 @@ class UserDAO:
         self.session.delete(user)
         self.session.commit()
 
-    def update(self, user_d):
+    def update(self, user_d):  # (не работает)--------------------------
         user = self.get_one(user_d.get("id"))
         # user.name = user_d.get("name")
         # user.surname = user_d.get("surname")
@@ -43,10 +43,10 @@ class UserDAO:
 
     # добавить фильм в закладки, чтобы просмотреть позже
     # -------------???-----------
-    def add_to_bookmarks(self, movie):  # создать в базе данных столбец??
-        self.movie = movie
-        bookmarks = []
-        bookmarks.append(self.movie)
-        return bookmarks  # просмотр сохраненных закладок
+    # def add_to_bookmarks(self, movie):  # создать в базе данных столбец??
+    #     self.movie = movie
+    #     bookmarks = []
+    #     bookmarks.append(self.movie)
+    #     return bookmarks  # просмотр сохраненных закладок
 
 

@@ -8,6 +8,6 @@ class MovieService:
     def get_one(self, bid):
         return self.dao.get_one(bid)
 
-    def get_all(self, filters):
-        return self.dao.get_all(filters)
+    def get_all(self):
+        return self.dao.get_all()
 

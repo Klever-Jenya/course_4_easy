@@ -19,15 +19,11 @@ movie_ns = Namespace('movies')
 class MoviesView(Resource):
     # @auth_required
     def get(self):
-        status = request.args.get("status")  # (работает) новинки new.
-        page = request.args.get("page")  # (не работает) точно число
+        # status = request.args.get("status")  # (не работает) новинки new.
+        # page = request.args.get("page")  # (не работает) точно число
 
-        filters = {
-            "status": status,
-            "page": page
-        }
 
-        all_movies = movie_service.get_all(filters)
+        all_movies = movie_service.get_all()
         res = MovieSchema(many=True).dump(all_movies)
         return res, 200
 

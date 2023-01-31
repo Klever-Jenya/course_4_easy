@@ -1,15 +1,14 @@
 from flask import request
 from flask_restx import Resource, Namespace
 
-import services.auth
-from implemented import user_service
+from implemented import user_service, auth_service
 
 auth_ns = Namespace('auth')
 
 
 # регистрация = идентификация - процедура, в результате которой для субъекта идентификации выявляется
 # его идентификатор (~паспорт, логин+пароль)
-@auth_ns.route('/register')  # (не работает) передавая email и пароль, создаем пользователя в системе.
+@auth_ns.route('/register')  # (работает) передавая email и пароль, создаем пользователя в системе.
 class RegisterViews(Resource):
 
     def post(self):
@@ -33,7 +32,7 @@ class RegisterViews(Resource):
 # если пользователь прошел аутентификацию, возвращаем пользователю ответ в виде:
 class LoginView(Resource):
 
-    def post(self):
+    def post(self):  # (работает)
         req_json = request.json
 
         email = req_json.get("email", None)
@@ -42,7 +41,7 @@ class LoginView(Resource):
         if None in [email, password]:
             return "", 400
 
-        tokens = services.auth.AuthService.generate_tokens(email, password)
+        tokens = auth_service.generate_tokens(email=email, password=password)
 
         return tokens, 200
 
@@ -52,14 +51,15 @@ class LoginView(Resource):
         access_token = req_json.get("access_token")
         refresh_token = req_json.get("refresh_token")
 
-        validated = services.auth.AuthService.validate_tokens(access_token, refresh_token)
+        validated = auth_service.validate_tokens(access_token, refresh_token)
+
         if not validated:
             return "Invalid token", 400
 
         # approve -одобрить подтверждать
-        tokens = services.auth.AuthService.approve_refresh_token(refresh_token)
+        tokens = auth_service.approve_refresh_token(refresh_token)
 
-        return tokens, 201
+        return tokens, 201  # -+ (выводит не tokens, а null, 201)---------------------
 
 # На данном этапе нужно обязательно проверить работу механизма аутентификации через Postman
 # (или используйте любой другой инструмент)

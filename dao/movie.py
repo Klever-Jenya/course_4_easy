@@ -1,3 +1,5 @@
+from flask import request
+
 from config import Config
 from dao.models.movie import Movie
 
@@ -9,9 +11,9 @@ class MovieDAO:
     def get_one(self, bid):
         return self.session.query(Movie).get(bid)
 
-    def get_all(self, filters):
-        status = filters.get("status")
-        page = filters.get("page")
+    def get_all(self, status=None, page=None):  # ??????
+        # status = request.args.get("status")
+        # page = request.args.get("page")
 
         if status == "new" and page is not None:  # cортировка и пагинация
             result = self.session.query(Movie).order_by(Movie.year.desc()) \

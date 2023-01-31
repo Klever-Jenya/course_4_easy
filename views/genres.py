@@ -8,11 +8,11 @@ from setup import db
 genre_ns = Namespace('genres')
 
 
-@genre_ns.route('/')  # (не работает)
+@genre_ns.route('/')  # работает
 class GenresView(Resource):
     # @auth_required
-    def get(self, filters):
-        all_genres = genre_service.get_all(filters)
+    def get(self):
+        all_genres = genre_service.get_all()
         res = GenreSchema(many=True).dump(all_genres)
         return res, 200
 
